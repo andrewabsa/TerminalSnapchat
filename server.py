@@ -14,10 +14,15 @@ class Server:
             data = self.connection.recv(1024)
             message = repr(data)
             print(message)
-    
 
-Server_func = Server()   
-    
+
+        
+            
+server_func = Server()
+server_func.receive_message()
+
+
+
 
    
 
