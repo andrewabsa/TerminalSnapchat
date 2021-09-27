@@ -7,7 +7,7 @@ class Server:
         self.server_socket.listen(2)
         print("Listening for a connection to the server...")
         self.connection, address = self.server_socket.accept()
-        print(f"Connected by {address}")
+        print(f"You are now connected to {address}")
 
     def receive_message(self):
         while True:

@@ -1,9 +1,11 @@
 import socket
 class Client:
+
     def __init__(self):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("Attempting connection...")
         self.client_socket.connect(("127.0.0.1", 65432))
-        print("Connected to server...")
+        print("Welcome to the chat server!")
         self.username_selection = input("Enter your username: ")
         self.message_to_send = input(f"{self.username_selection}: ")
 
