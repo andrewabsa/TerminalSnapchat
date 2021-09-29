@@ -1,25 +1,41 @@
 import socket
-class Client:
+import threading
 
+class Client:
     def __init__(self):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("Attempting connection...")
         self.client_socket.connect(("127.0.0.1", 65432))
         print("Welcome to the chat server!")
-        self.username_selection = input("Enter your username: ")
-        self.message_to_send = input(f"{self.username_selection}: ")
+    
+    def receive_message(self):
+        while True:
+            data = self.client_socket.recv(1024).decode()
+            message = data
+            print(message)
+            if not data:
+                break
 
-    def send_a_message(self):
-        self.client_socket.sendall(bytes(str(self.message_to_send), "utf-8"))
-        self.received_message = repr(self.client_socket.recv(1024))
-        print(self.received_message)
+    def send_message(self, text):
+        self.client_socket.send(text.encode())        
 
-    def send_another_message(self):
-        pass
-        
+    def prompt_input(self):
+        while True:
+            prompt = input()
+            self.send_message(prompt)
+            if not prompt:
+                print("You didn't enter anything...")
+
+
 
 client_func = Client()
-client_func.send_a_message()
+r = threading.Thread(target=client_func.receive_message)
+r.daemon = True
+r.start()
+client_func.prompt_input()
+
+
+
 
 
 
