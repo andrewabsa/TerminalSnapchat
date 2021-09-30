@@ -1,5 +1,5 @@
+from classes import Message
 import socket
-import threading
 
 class Server:
     def __init__(self):
@@ -13,29 +13,16 @@ class Server:
 
     def receive_message(self):
         while True:
-            data = self.connection.recv(1024).decode()
-            message = data
-            print(message)
-            if not data:
-                break
+            data = self.connection.recv(1024)
+            self.msg = repr(data)
+            print(self.msg.strip("b'"))
 
-    def send_message(self, text):
-        self.connection.send(text.encode())        
+    def send_message(self):
+        self.connection.sendall(bytes(str(self.msg), "utf-8"))
 
-    def prompt_input(self):
-        while True:
-            prompt = input()
-            self.send_message(prompt)
-            if not prompt:
-                print("You didn't enter anything...")
-
-        
-            
-server_func = Server()
-r = threading.Thread(target=server_func.receive_message)
-r.daemon = True
-r.start()
-server_func.prompt_input()
+Server_run = Server()
+Server_run.receive_message()
+Server_run.send_message()
 
 
 
