@@ -10,7 +10,11 @@ These will contain their own methods in order to create a program which utilises
 
 ### How the algorithm will function:
 
-- Terminal Snapchat will allow users (client & server) to send and receive messages to each other via socket communication through the command line: The main use and function of this algorithm will be to facilitate the sending and receiving of messages between two computers, in this case it will between the server and the client.
+- Terminal Snapchat will allow users (client & server) to send and receive messages to each other via socket communication through the command line: The main use and function of this algorithm will be to facilitate the sending and receiving of messages between two computers, in this case it will between the server and the client. This will work through a sequence of steps implemented in the algorithm:
+
+ 1. Firstly, the server and client files must simultaneously be launched for the program to function. The server socket will initially begin to listen for any incoming connections.
+ 2. Once the client is launched it will connect to the server using the given ip and port numbers. This will create a connection between the two networks.
+ 3. Text is sent in byte format from the client and then converted back into string format and can now be sent to the server.
 
 
 ### Python Dependencies used:
