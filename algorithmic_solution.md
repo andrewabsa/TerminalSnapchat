@@ -22,3 +22,7 @@ These will contain their own methods in order to create a program which utilises
 - socket
 
 
+### Additional Features:
+- Username functionality
+
+
