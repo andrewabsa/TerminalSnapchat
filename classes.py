@@ -1,6 +1,22 @@
 import random
 import socket
 
+class Information():
+    def __init__(self, name, hobby, fav_colour, fav_food):
+        self.name = name
+        self.hobby = hobby
+        self.fav_colour = fav_colour
+        self.fav_food = fav_food
+
+    @property
+    def statement_1(self):
+        return f"My name is {self.name}, and my favourite colour is {self.fav_colour}"
+
+    @property
+    def statement_2(self):
+        return f"I like to play {self.hobby} and love to eat {self.fav_food}"
+
+    
 class Server():
     def __init__(self):
         '''Creates server socket instance, binding itself to a given port and ip address
@@ -61,7 +77,10 @@ class Client():
         # Connect to the server using the given ip and port address
         self.client_socket.connect(("127.0.0.1", 65432))
         print("You have joined the server...")
-        print(f"Welcome to the server!")
+        print(f"Hi Client and Welcome to the server! \nHere's a little about myself, the host of this server:")
+        info = Information("Andrew", "Basketball", "Red", "Pizza")
+        print(info.statement_1)
+        print(info.statement_2)
         # Provide user with input to enter a username
         self.usr = input("Type a username: ")
         self.name = Username(self.usr)
@@ -89,30 +108,6 @@ class Username():
     def add_name(self):
         self.name_list.append(self.nickname)
     
-
-class Message():
-    def __init__(self):
-        pass
-
-    def send_text(self, txt):
-        pass
-
-    def send_messages(self):
-        pass
-
-class Names():
-    def __init__(self, namelist):
-        self.value = {
-            "Tom": 0,
-            "Emmanuel": 0,
-            "Brad": 0,
-            "Russel": 0
-         }
-        for name in namelist:
-            self.value[name.value] += 5
-
-    def name_choice(self):
-        self.nickname = random.choice(self.value)
 
 
  
